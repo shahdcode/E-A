@@ -166,7 +166,7 @@ section {
   background: #2c2a22; /* fallback while video/poster loads */
   overflow: hidden;
   padding: 0;
-  margin-bottom: 200px; /* ADDED: space between hero and countdown */
+  margin-bottom: 10px; /* ADDED: space between hero and countdown */
 }
 
 .hero__video {
@@ -258,11 +258,28 @@ section {
 }
 
 .countdown {
-  padding-top: 50px; /* ADDED: extra top padding for countdown section */
+  padding-top: 0; /* REMOVED: padding was pushing content down causing crop */
+  background-image: url('../assets/countdown frame.png');
+  background-size: contain; /* CHANGED: from 'cover' to 'contain' - shows full image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--bg); /* Added: fallback color */
+  min-height: 100vh; /* Added: ensures section has height to show the full image */
+  display: flex; /* Added: to center content vertically */
+  align-items: center; /* Added: centers content vertically */
+  justify-content: center; /* Added: centers content horizontally */
 }
 
+/* Override the default section padding for countdown only */
+.countdown {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Keep the 200px space between hero and countdown */
+/* Hero already has margin-bottom: 200px, so we keep that */
 .countdown__timer {
-  margin-top: 44px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -703,12 +720,12 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
 
 
-.countdown {
+/* .countdown {
   background-image: url('../assets/countdown frame.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+} */
 
 /* ===== FLOATING AUDIO TOGGLE BUTTON ===== */
 .audio-toggle {
