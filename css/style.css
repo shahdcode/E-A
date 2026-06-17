@@ -264,15 +264,22 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   background-color: var(--bg); /* Added: fallback color */
-  min-height: 100vh; /* Added: ensures section has height to show the full image */
+  min-height: 60vh; /* Added: ensures section has height to show the full image */
   display: flex; /* Added: to center content vertically */
   align-items: center; /* Added: centers content vertically */
   justify-content: center; /* Added: centers content horizontally */
 }
 
+
 /* Override the default section padding for countdown only */
 .countdown {
   padding-top: 0;
+  padding-bottom: 0; /* REMOVED: Remove bottom padding completely */
+  margin-bottom: 0; /* ADDED: Remove any margin */
+}
+
+/* Also remove padding from countdown container */
+.countdown .container {
   padding-bottom: 0;
 }
 
@@ -478,6 +485,11 @@ section {
   display: flex;
   flex-direction: column;
   gap: 28px;
+}
+
+/* Add this new rule to reduce bottom padding of RSVP section */
+.rsvp {
+  padding-bottom: 20px; /* Reduced from default section padding */
 }
 
 .form-group {
@@ -798,4 +810,179 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
     width: 16px;
     height: 16px;
   }
+}
+
+
+/* ===================================================================
+   FLOWER DIVIDER
+   =================================================================== */
+.flower-divider {
+  background: var(--bg);
+  padding: 0 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.flower-divider__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.85;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.flower-divider__image:hover {
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .flower-divider {
+    padding: 15px 0;
+  }
+  .flower-divider__image {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* Mobile */
+/* Mobile: Full bleed effect */
+@media (max-width: 480px) {
+  .flower-divider {
+    padding: 10px 0;
+    margin: 0 -24px; /* Match the container padding */
+  }
+  .flower-divider__image {
+    width: 110%;
+    max-width: 110%;
+    margin: 0;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .flower-divider {
+    padding: 8px 0;
+  }
+  .flower-divider__image {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+
+/* ===================================================================
+   3. CEREMONY LOCATION
+   =================================================================== */
+.ceremony-location {
+  background: var(--bg);
+  padding: var(--section-pad-y) 0;
+}
+
+.ceremony-location__content {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.ceremony-location__text {
+  text-align: center;
+}
+
+.ceremony-location__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.ceremony-location__details {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.ceremony-location__details strong {
+  color: var(--pine);
+  font-weight: 600;
+}
+
+.ceremony-location__venue {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--pine);
+  font-style: italic;
+}
+
+.ceremony-location__image-wrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--pine-faint);
+}
+
+.ceremony-location__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive - mobile */
+@media (max-width: 480px) {
+  .ceremony-location__content {
+    gap: 20px;
+  }
+  
+  .ceremony-location__details {
+    font-size: 1rem;
+  }
+  
+  .ceremony-location__venue {
+    font-size: 1.1rem;
+  }
+  
+  .ceremony-location__image-wrapper {
+    border-radius: 6px;
+  }
+}
+
+
+
+/* ===================================================================
+   FOOTER - Override to remove borders
+   =================================================================== */
+.footer .invitation__image {
+  border: none !important; /* Remove border */
+  aspect-ratio: auto !important; /* Remove forced aspect ratio */
+  width: auto !important; /* Let image be natural size */
+  height: auto !important; /* Let image determine height */
+  display: inline-block; /* Better for footer */
+  overflow: visible !important; /* PREVENT CROPPING - show full image */
+  border-radius: 0 !important; /* Remove any rounded corners */
+  background: transparent; /* Ensure no background */
+}
+
+.footer .invitation__image img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 240px; /* DOUBLED from 120px to 240px */
+  max-height: 240px; /* DOUBLED from 120px to 240px */
+  object-fit: contain !important;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
 }
