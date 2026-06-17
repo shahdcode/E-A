@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Eman &amp; Amr — Wedding Invitation</title>
+  <meta name="description" content="Join us as we celebrate our wedding on 17 September 2026.">
+
+  <!-- Fonts: Cormorant Garamond (display), Lato (body/UI), Parisienne (script accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;600&family=Parisienne&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ============================================ -->
+  <!-- 1. HERO — autoplaying video                   -->
+  <!-- ============================================ -->
+  <section class="hero" id="hero">
+    <video class="hero__video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <!-- <div class="hero__overlay" aria-hidden="true"></div> -->
+
+    <!-- <div class="hero__content">
+      <p class="hero__eyebrow reveal">We're getting married</p>
+      <h1 class="hero__names reveal">Eman <span class="amp">&amp;</span> Amr</h1>
+      <p class="hero__date reveal">17 . 09 . 2026</p>
+    </div> -->
+
+    <a href="#countdown" class="hero__scroll-cue" aria-label="Scroll to countdown">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 2. COUNTDOWN                                  -->
+  <!-- ============================================ -->
+  <section class="countdown" id="countdown">
+    <div class="container reveal">
+      <p class="section-label">Countdown</p>
+      <h2 class="countdown__heading">Until 17 September 2026</h2>
+
+      <!-- <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <use href="#sprig"></use>
+        </svg>
+      </div> -->
+
+      <div class="countdown__timer" id="countdownTimer" role="timer" aria-live="off">
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-days">00</span>
+          <span class="countdown__label">Days</span>
+        </div>
+        <span class="countdown__divider" aria-hidden="true">|</span>
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-hours">00</span>
+          <span class="countdown__label">Hours</span>
+        </div>
+        <span class="countdown__divider" aria-hidden="true">|</span>
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-minutes">00</span>
+          <span class="countdown__label">Minutes</span>
+        </div>
+      </div>
+
+      <p class="countdown__arrived" id="countdownArrived" hidden>Today is the day — we're married!</p>
+    </div>
+  </section>
+
+  <!-- ===== AUDIO PLAYER (hidden, controlled by floating button) ===== -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="assets/background%20music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Audio Control Button -->
+  <button id="audioToggle" class="audio-toggle" aria-label="Toggle background music">
+    <svg class="audio-icon audio-icon--on" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    </svg>
+    <svg class="audio-icon audio-icon--off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <line x1="23" y1="9" x2="17" y2="15" />
+      <line x1="17" y1="9" x2="23" y2="15" />
+    </svg>
+  </button>
+
+  <!-- ============================================ -->
+  <!-- 3. INVITATION CARD                            -->
+  <!-- ============================================ -->
+  <section class="invitation" id="invitation">
+    <div class="container">
+      <div class="invitation__card reveal">
+        <span class="invitation__corner invitation__corner--tl" aria-hidden="true"><svg viewBox="0 0 200 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <use href="#sprig"></use>
+          </svg></span>
+        <span class="invitation__corner invitation__corner--tr" aria-hidden="true"><svg viewBox="0 0 200 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <use href="#sprig"></use>
+          </svg></span>
+
+        <div class="invitation__image">
+          <img src="assets/invitation.jpg" alt="Sarah and James">
+        </div>
+
+        <div class="invitation__text">
+          <p class="section-label">With joyful hearts</p>
+          <h2>We're Inviting You<br>To Our Wedding</h2>
+          <p class="invitation__body">
+            Together with our families, we joyfully invite you to share in the beginning
+            of our forever. Your presence would mean the world to us as we exchange vows,
+            celebrate with the people we love most, and dance long into the night.
+          </p>
+          <p class="invitation__couple-names">Sarah Mitchell <span class="amp">&amp;</span> James Anderson</p>
+          <p class="invitation__date-full">Thursday, the Seventeenth of September<br>Two Thousand and Twenty-Six</p>
+        </div>
+
+        <span class="invitation__corner invitation__corner--bl" aria-hidden="true"><svg viewBox="0 0 200 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <use href="#sprig"></use>
+          </svg></span>
+        <span class="invitation__corner invitation__corner--br" aria-hidden="true"><svg viewBox="0 0 200 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <use href="#sprig"></use>
+          </svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 4. CEREMONY & RECEPTION                       -->
+  <!-- ============================================ -->
+  <section class="schedule" id="schedule">
+    <div class="container reveal">
+      <p class="section-label">The wedding day</p>
+      <h2 class="schedule__heading">Ceremony &amp; Reception</h2>
+      <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <use href="#sprig"></use>
+        </svg>
+      </div>
+
+      <div class="schedule__grid">
+        <article class="schedule__item">
+          <div class="schedule__image"><img src="assets/ceremony.jpg" alt="Wedding ceremony"></div>
+          <h3>Ceremony</h3>
+          <p class="schedule__time">4:00 PM</p>
+          <p class="schedule__venue">St. Mary's Chapel</p>
+          <p class="schedule__address">123 Garden Lane, Cairo, Egypt</p>
+        </article>
+
+        <article class="schedule__item">
+          <div class="schedule__image"><img src="assets/reception.jpg" alt="Wedding reception"></div>
+          <h3>Reception</h3>
+          <p class="schedule__time">7:00 PM</p>
+          <p class="schedule__venue">The Olive Garden Hall</p>
+          <p class="schedule__address">456 Riverside Avenue, Cairo, Egypt</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 5. VENUE MAP                                  -->
+  <!-- ============================================ -->
+  <section class="venue" id="venue">
+    <div class="container reveal">
+      <p class="section-label">Find us</p>
+      <h2>Venue Location</h2>
+      <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <use href="#sprig"></use>
+        </svg>
+      </div>
+
+      <div class="venue__map">
+        <iframe id="venueMap" src="https://www.google.com/maps?q=Cairo,+Egypt&output=embed"
+          title="Map to the wedding venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Cairo,+Egypt" target="_blank" rel="noopener"
+        class="btn btn--primary" id="directionsBtn">
+        Get Directions
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 6. RSVP                                       -->
+  <!-- ============================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="container reveal">
+      <p class="section-label">Please respond</p>
+      <h2>RSVP</h2>
+      <p class="rsvp__subtitle">Kindly let us know by 1st August 2026</p>
+      <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <use href="#sprig"></use>
+        </svg>
+      </div>
+
+      <form id="rsvpForm" class="rsvp__form" novalidate>
+
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="required">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required>
+          <span class="error-message" id="error-fullName"></span>
+        </div>
+
+        <fieldset class="form-group">
+          <legend>Will you be attending? <span class="required">*</span></legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attending" value="Joyfully Accepts" required>
+              <span class="radio-custom" aria-hidden="true"></span>
+              <span>Joyfully Accepts</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attending" value="Regretfully Declines" required>
+              <span class="radio-custom" aria-hidden="true"></span>
+              <span>Regretfully Declines</span>
+            </label>
+          </div>
+          <span class="error-message" id="error-attending"></span>
+        </fieldset>
+
+        <div class="form-group" id="guestGroup">
+          <label for="guestCount">Number of Guests Attending <span class="required">*</span></label>
+          <div class="stepper">
+            <button type="button" class="stepper__btn" id="decreaseGuests"
+              aria-label="Decrease number of guests">&minus;</button>
+            <input type="number" id="guestCount" name="guestCount" value="1" min="0" max="10" readonly
+              inputmode="numeric" required>
+            <button type="button" class="stepper__btn" id="increaseGuests"
+              aria-label="Increase number of guests">+</button>
+          </div>
+          <span class="error-message" id="error-guestCount"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="message">A Personal Message for the Couple</label>
+          <textarea id="message" name="message" rows="5"
+            placeholder="Share a wish, a memory or anything you'd like us to read..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary rsvp__submit" id="rsvpSubmit">
+          <span class="btn-text">Send RSVP</span>
+        </button>
+
+        <p class="rsvp__status" id="rsvpStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 7. FOOTER — monogram                          -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="invitation__image">
+      <img src="assets/favicon.png" alt="Eman and Amr">
+    </div>
+  </footer>
+
+  <!-- Shared SVG symbol: botanical sprig used as the recurring flourish motif -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="sprig" viewBox="0 0 200 24">
+        <path d="M2 12 C40 4, 80 4, 100 12 C120 4, 160 4, 198 12" fill="none" stroke="currentColor"
+          stroke-width="1.1" />
+        <path d="M30 11 C33 5, 38 3, 44 4 C40 8, 36 10, 30 11Z" fill="currentColor" />
+        <path d="M55 9 C58 3, 63 1, 69 2 C65 6, 61 8, 55 9Z" fill="currentColor" />
+        <path d="M76 12 C79 6, 84 4, 90 5 C86 9, 82 11, 76 12Z" fill="currentColor" />
+        <circle cx="100" cy="12" r="3.2" fill="currentColor" />
+        <path d="M145 11 C142 5, 137 3, 131 4 C135 8, 139 10, 145 11Z" fill="currentColor" />
+        <path d="M170 9 C167 3, 162 1, 156 2 C160 6, 164 8, 170 9Z" fill="currentColor" />
+        <path d="M191 12 C188 6, 183 4, 177 5 C181 9, 185 11, 191 12Z" fill="currentColor" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
