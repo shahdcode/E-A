@@ -47,7 +47,7 @@
    =================================================================== */
 
 const CONFIG = {
-  weddingDate: '2026-09-17T00:00:00',
+  weddingDate: '2026-09-19T17:00:00',
 
   venue: {
     mapQuery: 'Cairo, Egypt',
@@ -172,10 +172,11 @@ function initCountdown() {
   const elDays = document.getElementById('cd-days');
   const elHours = document.getElementById('cd-hours');
   const elMinutes = document.getElementById('cd-minutes');
+  const elSeconds = document.getElementById('cd-seconds');
   const elTimer = document.getElementById('countdownTimer');
   const elArrived = document.getElementById('countdownArrived');
 
-  if (!elDays || !elHours || !elMinutes || isNaN(target)) return;
+  if (!elDays || !elHours || !elMinutes || !elSeconds || isNaN(target)) return;
 
   function pad(num) {
     return String(Math.max(0, num)).padStart(2, '0');
@@ -189,6 +190,7 @@ function initCountdown() {
       elDays.textContent = '00';
       elHours.textContent = '00';
       elMinutes.textContent = '00';
+      elSeconds.textContent = '00';
       if (elTimer) elTimer.hidden = true;
       if (elArrived) elArrived.hidden = false;
       clearInterval(intervalId);
@@ -198,10 +200,12 @@ function initCountdown() {
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
 
     elDays.textContent = pad(days);
     elHours.textContent = pad(hours);
     elMinutes.textContent = pad(minutes);
+    elSeconds.textContent = pad(seconds);
   }
 
   tick();
@@ -311,10 +315,10 @@ function initRsvpForm() {
       group: document.getElementById('rsvpForm').querySelector('fieldset'),
       errorEl: document.getElementById('error-attending'),
     },
-    guestCount: {
-      group: document.getElementById('guestGroup'),
-      errorEl: document.getElementById('error-guestCount'),
-    },
+    // guestCount: {
+    //   group: document.getElementById('guestGroup'),
+    //   errorEl: document.getElementById('error-guestCount'),
+    // },
   };
 
   function setError(key, message) {
@@ -354,13 +358,6 @@ function initRsvpForm() {
       isValid = false;
     }
 
-    const guestCount = document.getElementById('guestCount').value;
-    if (guestCount === '' || isNaN(Number(guestCount))) {
-      setError('guestCount', 'Please set the number of guests.');
-      firstInvalid = firstInvalid || document.getElementById('guestCount');
-      isValid = false;
-    }
-
     if (!isValid && firstInvalid) firstInvalid.focus();
 
     return { isValid, attending };
@@ -370,7 +367,6 @@ function initRsvpForm() {
     return {
       fullName: fields.fullName.input.value.trim(),
       attending: attendingInput.value,
-      guestCount: document.getElementById('guestCount').value,
       message: document.getElementById('message').value.trim(),
     };
   }
@@ -386,7 +382,6 @@ function initRsvpForm() {
     const params = new URLSearchParams();
     params.append(CONFIG.googleForm.entries.fullName, data.fullName);
     params.append(CONFIG.googleForm.entries.attending, data.attending);
-    params.append(CONFIG.googleForm.entries.guestCount, data.guestCount);
     params.append(CONFIG.googleForm.entries.message, data.message);
 
     // Google Forms doesn't return CORS headers, so the response is opaque.
@@ -428,8 +423,6 @@ function initRsvpForm() {
       statusEl.textContent = 'Thank you! Your RSVP has been received with love.';
       form.reset();
       clearAllErrors();
-      document.getElementById('guestCount').value = '1';
-      initGuestStepperReset();
     } catch (err) {
       statusEl.textContent = "Something went wrong — please try again, or reach out to us directly.";
       statusEl.classList.add('is-error');

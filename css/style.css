@@ -36,7 +36,7 @@
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
 body {
   background: var(--bg);
@@ -258,16 +258,12 @@ section {
 }
 
 .countdown {
-  padding-top: 0; /* REMOVED: padding was pushing content down causing crop */
-  background-image: url('../assets/countdown frame.png');
-  background-size: contain; /* CHANGED: from 'cover' to 'contain' - shows full image */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: var(--bg); /* Added: fallback color */
-  min-height: 60vh; /* Added: ensures section has height to show the full image */
-  display: flex; /* Added: to center content vertically */
-  align-items: center; /* Added: centers content vertically */
-  justify-content: center; /* Added: centers content horizontally */
+  padding-top: 0;
+  background-color: var(--bg);
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -290,38 +286,40 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 4vw, 36px);
+  gap: clamp(10px, 2.5vw, 22px);
 }
 
 .countdown__unit {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 64px;
+  justify-content: center;
+  min-width: 96px;
+  padding: 25px 20px;
+  background: var(--bg);
+  border: 1px solid var(--pine-faint);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(81, 102, 46, 0.10);
 }
 
 .countdown__value {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
   font-weight: 500;
-  color: var(--pine);
+  color: var(--ink);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
 .countdown__label {
-  margin-top: 8px;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  margin-top: 6px;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.countdown__divider {
-  color: var(--sage);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 300;
-  transform: translateY(-6px);
+  font-family: var(--font-body);
+  color: var(--ink);
+  opacity: 0.75;
 }
 
 .countdown__arrived {
@@ -329,7 +327,7 @@ section {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.4rem;
-  color: var(--pine);
+  color: var(--ink);
 }
 
 /* ===================================================================
@@ -716,15 +714,15 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
   .hero__names { font-size: 6.2rem; }
 
-  .countdown__timer { gap: 56px; }
+  .countdown__timer { gap: 28px; }
 }
 
 /* ===================================================================
    RESPONSIVE — small phones
    =================================================================== */
 @media (max-width: 380px) {
-  .countdown__timer { gap: 12px; }
-  .countdown__unit { min-width: 56px; }
+  .countdown__timer { gap: 8px; }
+  .countdown__unit { max-width: 72px; padding: 12px 6px; }
   .btn { padding: 15px 26px; font-size: 0.76rem; }
 }
 
@@ -985,4 +983,25 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
   margin: 0 auto;
   border: none;
   border-radius: 0;
+}
+
+
+
+
+.form-notice {
+  padding: 16px 18px;
+  border: 1px solid var(--pine-faint);
+  border-radius: 10px;
+  background: var(--pine-softer);
+  margin-bottom: 24px;
+}
+
+.form-notice p {
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.form-notice p + p {
+  margin-top: 8px;
 }
