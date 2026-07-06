@@ -73,8 +73,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initRsvpForm();
   initAudioControl();
   initHeroVideoLoop();
+  initHeroMask();
 });
 
+/* ===================================================================
+   HERO MASK — covers the brief decode glitch when the video starts,
+   showing the site background color instead of a raw green flash
+   =================================================================== */
+function initHeroMask() {
+  const video = document.querySelector('.hero__video');
+  const mask = document.getElementById('heroMask');
+  if (!video || !mask) return;
+
+  video.addEventListener('playing', () => {
+    // Small buffer so we're past the very first (potentially glitchy) frames
+    setTimeout(() => mask.classList.add('is-hidden'), 250);
+  }, { once: true });
+}
 
 
 /* ===================================================================

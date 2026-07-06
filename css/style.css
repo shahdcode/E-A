@@ -22,9 +22,9 @@
   --pine-softer: rgba(81, 102, 46, 0.08);
   --sage-faint: rgba(160, 175, 108, 0.25);
 
-  --font-display: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
-  --font-script: 'Parisienne', cursive;
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Playfair Display', 'Georgia', serif;
+  --font-script: 'Playfair Display', 'Georgia', serif;
 
   --section-pad-y: clamp(64px, 11vw, 128px);
   --container-max: 1080px;
@@ -92,7 +92,7 @@ section {
 
 .amp {
   font-family: var(--font-script);
-  font-size: 1.3em;
+  font-style: italic;
   color: var(--pine);
   padding: 0 0.08em;
   display: inline-block;
@@ -241,6 +241,22 @@ section {
   animation: scrollCue 2.2s ease-in-out infinite;
   transform-origin: top;
 }
+
+
+.hero__mask {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+
+.hero__mask.is-hidden {
+  opacity: 0;
+}
+
 @keyframes scrollCue {
   0% { transform: scaleY(0); opacity: 0; }
   35% { transform: scaleY(1); opacity: 1; }
