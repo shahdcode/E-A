@@ -146,12 +146,14 @@ section {
 }
 
 .btn--primary {
-  background: var(--pine);
+  background: var(--sage);
+  border-color: var(--sage);
   color: var(--bg);
 }
-.btn--primary:hover { background: var(--sage); border-color: var(--sage); }
+.btn--primary:hover { background: var(--pine); border-color: var(--pine); }
 .btn--primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .btn--primary:disabled { opacity: 0.55; cursor: not-allowed; }
+
 
 /* ===================================================================
    1. HERO
@@ -592,7 +594,7 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid var(--pine);
+  border: 1px solid var(--sage);
   flex-shrink: 0;
   position: relative;
   transition: border-color 0.2s var(--ease);
@@ -1020,4 +1022,45 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
 .form-notice p + p {
   margin-top: 8px;
+}
+
+
+
+/* ---------- Language landing buttons ---------- */
+.btn--lang {
+  min-width: 200px;
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--bg);
+}
+.btn--lang:hover { background: var(--pine); border-color: var(--pine); }
+.btn--lang:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Language landing page ---------- */
+.landing {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.landing__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.landing__buttons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  transform: translateY(clamp(-160px, -22vh, -70px));
 }
