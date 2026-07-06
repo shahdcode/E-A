@@ -35,7 +35,6 @@
            ...viewform?entry.123456789=John&entry.987654321=Joyfully...
          Copy each "entry.XXXXXXXXX" number into CONFIG.googleForm.entries
          below, matching it to the right field.
-
       d) Take the form's normal URL, e.g.:
            https://docs.google.com/forms/d/e/1FAIpQLSxxxxx/viewform
          and change "viewform" to "formResponse". Paste that into
@@ -56,12 +55,12 @@ const CONFIG = {
   guestLimits: { min: 0, max: 10 },
 
   googleForm: {
-    actionUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/formResponse',
+    actionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeUktQvZy2fcGP0Hi_-l_BqhUjvxXW8r3HpHAh1BxRoJc9rRQ/formResponse',
     entries: {
-      fullName: 'entry.REPLACE_ME_1',
-      attending: 'entry.REPLACE_ME_2',
-      guestCount: 'entry.REPLACE_ME_3',
-      message: 'entry.REPLACE_ME_4',
+      fullName: 'entry.1765694629',
+      attending: 'entry.1637011081',
+      // guestCount: 'entry.REPLACE_ME_3',
+      message: 'entry.1408390855',
     },
   },
 };
@@ -73,7 +72,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initGuestStepper();
   initRsvpForm();
   initAudioControl();
+  initHeroVideoLoop();
 });
+
+
+
+/* ===================================================================
+   HERO VIDEO — plays fully once, then loops only from 0:08 to the end
+   =================================================================== */
+function initHeroVideoLoop() {
+  const video = document.querySelector('.hero__video');
+  if (!video) return;
+
+  const LOOP_START = 8; // seconds
+
+  video.addEventListener('ended', () => {
+    video.currentTime = LOOP_START;
+    video.play().catch(() => {});
+  });
+}
 
 /* ===================================================================
    AUDIO CONTROL — floating mute/unmute button
