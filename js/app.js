@@ -66,14 +66,22 @@ const CONFIG = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  initCountdown();
-  initScrollReveal();
-  initVenue();
-  initGuestStepper();
-  initRsvpForm();
-  initAudioControl();
-  initHeroVideoLoop();
-  initHeroMask();
+  [
+    initCountdown,
+    initScrollReveal,
+    initVenue,
+    initGuestStepper,
+    initRsvpForm,
+    initAudioControl,
+    initHeroVideoLoop,
+    initHeroMask,
+  ].forEach((fn) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`[app.js] ${fn.name} failed:`, err);
+    }
+  });
 });
 
 /* ===================================================================
