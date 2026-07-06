@@ -49,7 +49,7 @@ const CONFIG = {
   weddingDate: '2026-09-19T17:00:00',
 
   venue: {
-    mapQuery: 'Cairo, Egypt',
+    mapQuery: '26HH+GX Old Cairo',
   },
 
   guestLimits: { min: 0, max: 10 },
