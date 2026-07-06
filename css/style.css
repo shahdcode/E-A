@@ -13,7 +13,7 @@
 :root {
   --bg: #fbf8ef;
   --ink: #a85c66;
-  --pine: #51662e;
+  --pine: #a85c66;
   --sage: #a0af6c;
 
   --ink-soft: rgba(168, 92, 102, 0.7);
@@ -302,7 +302,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(10px, 2.5vw, 22px);
+  gap: clamp(6px, 2.5vw, 22px);
+  width: 100%;
 }
 
 .countdown__unit {
@@ -311,8 +312,9 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 96px;
-  padding: 25px 20px;
+  flex: 1 1 0;
+  max-width: clamp(64px, 22vw, 96px);
+  padding: clamp(14px, 5vw, 25px) clamp(8px, 4vw, 20px);
   background: var(--bg);
   border: 1px solid var(--pine-faint);
   border-radius: 14px;
@@ -322,7 +324,7 @@ section {
 .countdown__value {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 6vw, 2.6rem);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink);
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -737,8 +739,6 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
    RESPONSIVE — small phones
    =================================================================== */
 @media (max-width: 380px) {
-  .countdown__timer { gap: 8px; }
-  .countdown__unit { max-width: 72px; padding: 12px 6px; }
   .btn { padding: 15px 26px; font-size: 0.76rem; }
 }
 

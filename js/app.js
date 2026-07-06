@@ -148,6 +148,20 @@ function initAudioControl() {
   // Click handler
   toggleBtn.addEventListener('click', toggleAudio);
 
+  // Stop the music when the tab/page is hidden or closed — prevents
+  // audio continuing in the background on iPhone/Safari.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      audio.pause();
+      isPlaying = false;
+      updateIcons(false);
+    }
+  });
+
+  window.addEventListener('pagehide', () => {
+    audio.pause();
+  });
+
   // If audio ends, restart loop
   audio.addEventListener('ended', () => {
     if (audio.loop) {
