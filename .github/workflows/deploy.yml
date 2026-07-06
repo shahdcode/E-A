@@ -9,8 +9,15 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,11 +26,12 @@ jobs:
         run: |
           SHA=$(git rev-parse --short HEAD)
           sed -i "s/__CACHEBUST__/${SHA}/g" index.html english.html arabic.html css/style.css
-          # Version every asset reference too, so images/video/audio can't get stuck behind a stale CDN cache
           sed -i -E "s#(assets/[A-Za-z0-9_.% -]+\.(jpg|jpeg|png|mp4|mp3))#\1?v=${SHA}#g" index.html english.html arabic.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
