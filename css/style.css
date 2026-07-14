@@ -10,6 +10,21 @@
    section dividers, invitation-card corner ornaments, and the footer frame.
    =================================================================== */
 
+
+@font-face {
+    font-family: "Orange Avenue";
+    src: url("../fonts/orange-avenue-demo/OrangeAvenueDEMO-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Runethia";
+    src: url("../fonts/runethia/Runethia.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
   --bg: #fbf8ef;
   --ink: #a85c66;
@@ -22,9 +37,14 @@
   --pine-softer: rgba(81, 102, 46, 0.08);
   --sage-faint: rgba(160, 175, 108, 0.25);
 
-  --font-display: 'Playfair Display', 'Georgia', serif;
-  --font-body: 'Playfair Display', 'Georgia', serif;
-  --font-script: 'Playfair Display', 'Georgia', serif;
+  /* --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Cormorant Garamond', 'Georgia', serif;*/
+  --font-script: 'Beau Rivage', cursive; 
+
+  --font-display: "Orange Avenue", serif;
+  --font-body: "Orange Avenue", serif;
+  /* --font-script: "Runethia", cursive; */
+
 
   --section-pad-y: clamp(64px, 11vw, 128px);
   --container-max: 1080px;
@@ -92,7 +112,7 @@ section {
 
 .amp {
   font-family: var(--font-script);
-  font-style: italic;
+  font-style: normal;
   color: var(--pine);
   padding: 0 0.08em;
   display: inline-block;
@@ -101,11 +121,27 @@ section {
 .section-label {
   font-family: var(--font-body);
   font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--pine);
   margin: 0 0 14px;
   font-weight: 600;
+}
+
+.ceremony-location__text .section-label {
+  font-family: var(--font-script);
+  font-size: clamp(2.6rem, 7vw, 3.6rem);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+.venue .section-label {
+  font-family: var(--font-script);
+  font-size: clamp(2.6rem, 7vw, 3.8rem);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 400;
 }
 
 .flourish {
@@ -270,8 +306,9 @@ section {
    2. COUNTDOWN
    =================================================================== */
 .countdown__heading {
-  font-size: clamp(1.5rem, 4vw, 2.1rem);
-  font-style: italic;
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  font-style: normal;
   font-weight: 400;
 }
 
@@ -422,7 +459,7 @@ section {
 /* ===================================================================
    4. CEREMONY & RECEPTION
    =================================================================== */
-.schedule__heading { font-size: clamp(1.7rem, 4.5vw, 2.4rem); }
+.schedule__heading { font-size: 0.78rem; }
 
 .schedule__grid {
   margin-top: 48px;
@@ -508,6 +545,12 @@ section {
 /* Add this new rule to reduce bottom padding of RSVP section */
 .rsvp {
   padding-bottom: 20px; /* Reduced from default section padding */
+}
+
+.rsvp h2 {
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  font-weight: 400;
 }
 
 .form-group {
@@ -835,6 +878,7 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 .flower-divider {
   background: var(--bg);
   padding: 0 0;
+  margin-top: -120px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -848,11 +892,12 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
   height: auto;
   display: block;
   opacity: 0.85;
+  transform: scale(1.2);
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .flower-divider__image:hover {
-  transform: scale(1.02);
+  transform: scale(1.18);
   opacity: 1;
 }
 
@@ -873,7 +918,7 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 @media (max-width: 480px) {
   .flower-divider {
     padding: 10px 0;
-    margin: 0 -24px; /* Match the container padding */
+    margin: -120px -24px 0; /* Keep top pull-up, match container padding on sides */
   }
   .flower-divider__image {
     width: 110%;
@@ -917,7 +962,7 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
 .ceremony-location__title {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  font-size: 0.78rem;
   color: var(--ink);
   margin-bottom: 12px;
   font-weight: 500;
