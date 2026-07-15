@@ -100,7 +100,7 @@ button { font-family: inherit; }
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 calc(24px + env(safe-area-inset-right)) 0 calc(24px + env(safe-area-inset-left));
 }
 
 section {
@@ -264,7 +264,7 @@ section {
 
 .hero__scroll-cue {
   position: absolute;
-  bottom: 32px;
+  bottom: calc(32px + env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -551,6 +551,7 @@ section {
   font-family: var(--font-script);
   font-size: clamp(2.2rem, 6vw, 3rem);
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .form-group {
@@ -801,8 +802,8 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 /* ===== FLOATING AUDIO TOGGLE BUTTON ===== */
 .audio-toggle {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  right: calc(28px + env(safe-area-inset-right));
   z-index: 9999;
   width: 52px;
   height: 52px;
@@ -847,8 +848,8 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 /* Responsive: smaller on mobile */
 @media (max-width: 600px) {
   .audio-toggle {
-    bottom: 20px;
-    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    right: calc(20px + env(safe-area-inset-right));
     width: 44px;
     height: 44px;
   }
@@ -860,8 +861,8 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
 @media (max-width: 380px) {
   .audio-toggle {
-    bottom: 16px;
-    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    right: calc(16px + env(safe-area-inset-right));
     width: 40px;
     height: 40px;
   }
@@ -977,14 +978,14 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 
 .ceremony-location__details strong {
   color: var(--pine);
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .ceremony-location__venue {
   font-family: var(--font-display);
   font-size: 1.3rem;
   color: var(--pine);
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 .ceremony-location__image-wrapper {
