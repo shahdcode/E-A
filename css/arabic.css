@@ -180,8 +180,11 @@ section {
   background: var(--sage);
   border-color: var(--sage);
   color: var(--bg);
+  -webkit-tap-highlight-color: transparent;
 }
-.btn--primary:hover { background: var(--pine); border-color: var(--pine); }
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover { background: var(--pine); border-color: var(--pine); }
+}
 .btn--primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .btn--primary:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -347,7 +350,7 @@ section {
   align-items: center;
   justify-content: center;
   flex: 1 1 0;
-  max-width: clamp(64px, 22vw, 96px);
+  max-width: clamp(72px, 24vw, 108px);
   padding: clamp(14px, 5vw, 25px) clamp(8px, 4vw, 20px);
   background: var(--bg);
   border: 1px solid var(--pine-faint);

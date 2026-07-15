@@ -192,8 +192,11 @@ section {
   background: var(--sage);
   border-color: var(--sage);
   color: var(--bg);
+  -webkit-tap-highlight-color: transparent;
 }
-.btn--primary:hover { background: var(--pine); border-color: var(--pine); }
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover { background: var(--pine); border-color: var(--pine); }
+}
 .btn--primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .btn--primary:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -1085,8 +1088,11 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
   background: var(--sage);
   border-color: var(--sage);
   color: var(--bg);
+  -webkit-tap-highlight-color: transparent;
 }
-.btn--lang:hover { background: var(--pine); border-color: var(--pine); }
+@media (hover: hover) and (pointer: fine) {
+  .btn--lang:hover { background: var(--pine); border-color: var(--pine); }
+}
 .btn--lang:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .btn--lang[lang="en"] { font-family: 'Cormorant Garamond', 'Georgia', serif; }
