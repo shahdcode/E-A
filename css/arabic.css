@@ -12,15 +12,15 @@
 
 
 @font-face {
-    font-family: "Orange Avenue";
-    src: url("../fonts/KFGQPC_uthman_taha_naskh_regular.ttf") format("opentype");
+    font-family: "Uthman Taha Naskh";
+    src: url("../fonts/KFGQPC_uthman_taha_naskh_regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Runethia";
-    src: url("../fonts/alfont_com_ArefRuqaa-Regular.ttf") format("opentype");
+    font-family: "Aref Ruqaa";
+    src: url("../fonts/alfont_com_ArefRuqaa-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -37,14 +37,9 @@
   --pine-softer: rgba(81, 102, 46, 0.08);
   --sage-faint: rgba(160, 175, 108, 0.25);
 
-  /* --font-display: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body: 'Cormorant Garamond', 'Georgia', serif;*/
-  --font-script: 'Beau Rivage', cursive; 
-
-  --font-display: "Orange Avenue", serif;
-  --font-body: "Orange Avenue", serif;
-  /* --font-script: "Runethia", cursive; */
-
+  --font-display: "Uthman Taha Naskh", serif;
+  --font-body: "Uthman Taha Naskh", serif;
+  --font-script: "Aref Ruqaa", cursive;
 
   --section-pad-y: clamp(64px, 11vw, 128px);
   --container-max: 1080px;
