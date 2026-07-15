@@ -25,6 +25,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Uthman Taha Naskh";
+    src: url("../fonts/KFGQPC_uthman_taha_naskh_regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
   --bg: #fbf8ef;
   --ink: #a85c66;
@@ -1081,6 +1088,9 @@ textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
 }
 .btn--lang:hover { background: var(--pine); border-color: var(--pine); }
 .btn--lang:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.btn--lang[lang="en"] { font-family: 'Cormorant Garamond', 'Georgia', serif; }
+.btn--lang[lang="ar"] { font-family: "Uthman Taha Naskh", serif; }
 
 /* ---------- Language landing page ---------- */
 .landing {
