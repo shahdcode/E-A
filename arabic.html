@@ -7,6 +7,7 @@
   <title>إيمان وعمرو — دعوة زفاف</title>
   <meta name="description" content="انضموا إلينا للاحتفال بزفافنا في 19 سبتمبر 2026.">
 
+  <!-- Fonts: Cormorant Garamond (elegant serif, body + headings) + Beau Rivage (script, short accent words only) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -14,7 +15,7 @@
     rel="stylesheet">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="css/style.css?v=__CACHEBUST__">
+  <link rel="stylesheet" href="css/arabic.css?v=__CACHEBUST__">
 </head>
 
 <body>
@@ -26,9 +27,16 @@
     <video class="hero__video" autoplay muted playsinline poster="assets/hero-poster.jpg">
       <source src="assets/hero-video.mp4" type="video/mp4">
     </video>
+    <!-- <div class="hero__overlay" aria-hidden="true"></div> -->
     <div class="hero__mask" id="heroMask" aria-hidden="true"></div>
 
-    <a href="#countdown" class="hero__scroll-cue" aria-label="انتقل إلى العد التنازلي">
+    <!-- <div class="hero__content">
+      <p class="hero__eyebrow reveal">نحن مقبلون على الزواج</p>
+      <h1 class="hero__names reveal">إيمان <span class="amp">&amp;</span> عمرو</h1>
+      <p class="hero__date reveal">17 . 09 . 2026</p>
+    </div> -->
+
+    <a href="#countdown" class="hero__scroll-cue" aria-label="التمرير إلى العد التنازلي">
       <span class="hero__scroll-line" aria-hidden="true"></span>
     </a>
   </section>
@@ -39,9 +47,15 @@
   <section class="countdown" id="countdown">
     <div class="container reveal">
       <p class="countdown__heading">العد التنازلي</p>
-      <h2 class="section-label">حتى يوم الزفاف</h2>
+      <h2 class="ceremony-location__details">حتى يوم فرحنا</h2>
 
-      <div class="countdown__timer" id="countdownTimer" role="timer" aria-live="off" dir="ltr">
+      <!-- <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <use href="#sprig"></use>
+        </svg>
+      </div> -->
+
+      <div class="countdown__timer" id="countdownTimer" role="timer" aria-live="off">
         <div class="countdown__unit">
           <span class="countdown__value" id="cd-days">00</span>
           <span class="countdown__label">أيام</span>
@@ -60,24 +74,26 @@
         </div>
       </div>
 
-      <p class="countdown__arrived" id="countdownArrived" hidden>اليوم هو اليوم الموعود — لقد تزوجنا!</p>
+      <p class="countdown__arrived" id="countdownArrived" hidden>لقد حان اليوم — أصبحنا زوجين!</p>
     </div>
   </section>
 
   <!-- ===== AUDIO PLAYER (hidden, controlled by floating button) ===== -->
   <audio id="bgAudio" loop preload="auto">
     <source src="assets/background%20music.mp3" type="audio/mpeg">
-    متصفحك لا يدعم عنصر الصوت.
+    متصفحك لا يدعم تشغيل الصوت.
   </audio>
 
   <!-- Floating Audio Control Button -->
   <button id="audioToggle" class="audio-toggle" aria-label="تشغيل أو إيقاف الموسيقى">
-    <svg class="audio-icon audio-icon--on" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="audio-icon audio-icon--on" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
       <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
     </svg>
-    <svg class="audio-icon audio-icon--off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+    <svg class="audio-icon audio-icon--off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
       <line x1="23" y1="9" x2="17" y2="15" />
       <line x1="17" y1="9" x2="23" y2="15" />
@@ -86,7 +102,7 @@
 
   <!-- ===== FLOWER DIVIDER BREAK ===== -->
   <div class="flower-divider">
-    <img src="assets/floral line 2.png" alt="زخرفة زهور" class="flower-divider__image">
+    <img src="assets/floral line 2.png" alt="شريط زهور فاصل" class="flower-divider__image">
   </div>
 
   <!-- ============================================ -->
@@ -96,31 +112,34 @@
     <div class="container">
       <div class="ceremony-location__content reveal">
         <div class="ceremony-location__text">
-          <p class="section-label">مراسم الزفاف</p>
-          <h2 class="ceremony-location__title">أنتم مدعوون</h2>
+          <p class="section-label">حفل الزفاف</p>
+          <h2 class="ceremony-location__details">شاركونا فرحتنا في احتفال يجمع بين عائلتين <br> ليصبحا عائلة واحدة
+          </h2>
           <p class="ceremony-location__details">
-            سيقام حفل الزفاف في تمام الساعة <strong>5:00 مساءً</strong>
+            ستقام مراسم الزفاف في
           </p>
-          <p class="ceremony-location__venue">قصر علي</p>
+          <p class="ceremony-location__venue">قصر محمد علي</p>
         </div>
         <div class="ceremony-location__image-wrapper">
-          <img src="assets/IMG_0325.jpg" alt="مكان إقامة الحفل" class="ceremony-location__image">
+          <img src="assets/IMG_0325.jpg" alt="مكان إقامة حفل الزفاف" class="ceremony-location__image">
         </div>
       </div>
     </div>
   </section>
+
+
 
   <!-- ============================================ -->
   <!-- 5. VENUE MAP                                  -->
   <!-- ============================================ -->
   <section class="venue" id="venue">
     <div class="container reveal">
-      <p class="section-label">الموقع</p>
-      <h2 class="schedule__heading">قاعة البرجولا في قصر محمد علي</h2>
-      <h2>موقع القاعة</h2>
+      <p class="section-label">قاعة الحفل</p>
+      <h2 class="ceremony-location__details">قاعة البرجولا في قصر محمد علي</h2>
+      <h2 class="ceremony-location__details">موقع القاعة</h2>
       <div class="venue__map">
         <iframe id="venueMap" src="https://www.google.com/maps?q=Cairo,+Egypt&output=embed"
-          title="خريطة موقع حفل الزفاف" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          title="خريطة موقع قاعة الزفاف" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
 
@@ -136,8 +155,9 @@
   <!-- ============================================ -->
   <section class="rsvp" id="rsvp">
     <div class="container reveal">
-      <h2>تأكيد الحضور</h2>
-      <p class="rsvp__subtitle">يرجى إفادتنا بردكم بحلول 1 أغسطس 2026</p>
+      <!-- <p class="section-label">Please respond</p> -->
+      <h2>يرجى الرد</h2>
+      <p class="ceremony-location__details">يرجى تأكيد حضوركم قبل 19 أغسطس 2026</p>
       <div class="flourish" aria-hidden="true">
         <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
           <use href="#sprig"></use>
@@ -147,8 +167,8 @@
       <form id="rsvpForm" class="rsvp__form" novalidate>
 
         <div class="form-group">
-          <label for="fullName">الاسم بالكامل <span class="required">*</span></label>
-          <input type="text" id="fullName" name="fullName" placeholder="اسمك بالكامل" autocomplete="name" required>
+          <label for="fullName">الاسم الكامل <span class="required">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="اكتب اسمك الكامل" autocomplete="name" required>
           <span class="error-message" id="error-fullName"></span>
         </div>
 
@@ -163,21 +183,22 @@
             <label class="radio-option">
               <input type="radio" name="attending" value="Regretfully Declines" required>
               <span class="radio-custom" aria-hidden="true"></span>
-              <span>نعتذر عن عدم الحضور</span>
+              <span>يؤسفنا الاعتذار</span>
             </label>
           </div>
           <span class="error-message" id="error-attending"></span>
         </fieldset>
 
-        <div class="form-notice">
-          <p><strong>نظراً لسعة القاعة، يرجى الاقتصار على الحضور المذكورين بالدعوة فقط.</strong></p>
-          <p><strong>نعتذر عن عدم إمكانية استقبال مرافقين، ونشكر لكم تفهمكم.</strong></p>
-        </div>
+        <!-- <div class="form-notice">
+          <p><strong>على الرغم من محبتنا الكبيرة لأطفالكم، فقد اخترنا أن يقتصر الاحتفال بيومنا المميز على
+              الضيوف الكبار فقط. نقدّر تفهمكم، ونتطلع لمشاركتكم هذه اللحظة السعيدة من قلوبنا.
+            </strong></p>
+        </div> -->
 
         <div class="form-group">
           <label for="message">رسالة شخصية للعروسين</label>
           <textarea id="message" name="message" rows="5"
-            placeholder="شاركونا أمنية أو ذكرى أو أي شيء تودّون أن نقرأه لكم..."></textarea>
+            placeholder="شاركونا أمنية أو ذكرى أو أي كلمات تودّون أن نقرأها..."></textarea>
         </div>
 
         <button type="submit" class="btn btn--primary rsvp__submit" id="rsvpSubmit">

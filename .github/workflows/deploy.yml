@@ -25,7 +25,7 @@ jobs:
       - name: Inject cache-busting version
         run: |
           SHA=$(git rev-parse --short HEAD)
-          sed -i "s/__CACHEBUST__/${SHA}/g" index.html english.html arabic.html css/style.css
+          sed -i "s/__CACHEBUST__/${SHA}/g" index.html english.html arabic.html css/style.css css/arabic.css
           sed -i -E "s#(assets/[A-Za-z0-9_.% -]+\.(jpg|jpeg|png|mp4|mp3))#\1?v=${SHA}#g" index.html english.html arabic.html
 
       - uses: actions/configure-pages@v5
