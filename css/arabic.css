@@ -53,6 +53,15 @@
 html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
+/* Locks scrolling while the hero video is still loading after autoplay
+   was blocked (our Low Power Mode fallback) — removed as soon as the
+   video has buffered enough to play. */
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);

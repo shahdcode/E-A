@@ -121,9 +121,36 @@ function initHeroVideoLoop() {
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === 'function') {
     playPromise.catch(() => {
-      // Autoplay was blocked. Reveal the poster right away instead of
-      // leaving it hidden behind the mask while we wait for a gesture.
+      // Autoplay was blocked. There's no API that tells a website the
+      // device is in Low Power Mode — "autoplay got blocked" is the only
+      // signal we have, so it's what stands in for it here.
+      //
+      // Reveal the poster right away instead of leaving it hidden behind
+      // the mask, lock scrolling so the person can't reach the rest of
+      // the page before the video has at least loaded, then unlock as
+      // soon as it's buffered enough to play (it still needs a tap to
+      // actually start).
       if (mask) mask.classList.add('is-hidden');
+
+      const html = document.documentElement;
+      html.classList.add('no-scroll');
+
+      let safetyTimer = setTimeout(unlockScroll, 8000); // never trap someone on a broken/slow connection
+
+      function unlockScroll() {
+        html.classList.remove('no-scroll');
+        video.removeEventListener('loadeddata', unlockScroll);
+        video.removeEventListener('canplay', unlockScroll);
+        clearTimeout(safetyTimer);
+      }
+
+      // If it's already buffered enough (e.g. cached), unlock immediately.
+      if (video.readyState >= 3) {
+        unlockScroll();
+      } else {
+        video.addEventListener('loadeddata', unlockScroll, { once: true });
+        video.addEventListener('canplay', unlockScroll, { once: true });
+      }
 
       const startOnInteraction = () => {
         video.play().catch(() => {});
