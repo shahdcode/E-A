@@ -93,22 +93,10 @@ function initHeroMask() {
   const mask = document.getElementById('heroMask');
   if (!video || !mask) return;
 
-  let revealed = false;
-  function reveal() {
-    if (revealed) return;
-    revealed = true;
-    mask.classList.add('is-hidden');
-  }
-
   video.addEventListener('playing', () => {
     // Small buffer so we're past the very first (potentially glitchy) frames
-    setTimeout(reveal, 250);
+    setTimeout(() => mask.classList.add('is-hidden'), 250);
   }, { once: true });
-
-  // iOS Low Power Mode silently blocks autoplay, so "playing" may never
-  // fire. Don't leave the poster hidden behind the mask forever — reveal
-  // it after a short wait regardless of whether the video ever starts.
-  setTimeout(reveal, 2500);
 }
 
 
@@ -125,31 +113,6 @@ function initHeroVideoLoop() {
     video.currentTime = LOOP_START;
     video.play().catch(() => {});
   });
-
-  // Some iOS versions (notably in Low Power Mode) ignore the "autoplay"
-  // attribute entirely and reject play(). Nudge playback explicitly, and
-  // if it's blocked, retry on the first tap/click/scroll — same pattern
-  // already used for the background audio below.
-  function attemptPlay() {
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        const retry = () => {
-          video.play().catch(() => {});
-          document.removeEventListener('touchstart', retry);
-          document.removeEventListener('click', retry);
-          document.removeEventListener('scroll', retry);
-        };
-        document.addEventListener('touchstart', retry, { once: true });
-        document.addEventListener('click', retry, { once: true });
-        document.addEventListener('scroll', retry, { once: true });
-      });
-    }
-  }
-
-  attemptPlay();
-  // iOS sometimes needs a second nudge shortly after load.
-  setTimeout(attemptPlay, 500);
 }
 
 /* ===================================================================
