@@ -235,6 +235,15 @@ section {
   z-index: 0;
 }
 
+/* Hide iOS's native "start playback" button that Safari overlays on a
+   paused video with a poster — we handle tap-to-play ourselves. */
+.hero__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;
+}
+
 .hero__overlay {
   position: absolute;
   inset: 0;
