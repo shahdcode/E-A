@@ -341,6 +341,7 @@ section {
   justify-content: center;
   gap: clamp(6px, 2.5vw, 22px);
   width: 100%;
+  direction: ltr;
 }
 
 .countdown__unit {
@@ -534,7 +535,7 @@ section {
 .rsvp__form {
   margin: 48px auto 0;
   max-width: 520px;
-  text-align: left;
+  text-align: right;
   display: flex;
   flex-direction: column;
   gap: 28px;

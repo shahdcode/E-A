@@ -105,6 +105,7 @@ function initHeroMask() {
    =================================================================== */
 function initHeroVideoLoop() {
   const video = document.querySelector('.hero__video');
+  const mask = document.getElementById('heroMask');
   if (!video) return;
 
   const LOOP_START = 8; // seconds
@@ -114,52 +115,27 @@ function initHeroVideoLoop() {
     video.play().catch(() => {});
   });
 
-  // ===== FORCE THE VIDEO TO PLAY, NO MATTER WHAT =====
-  // iOS (especially in Low Power Mode) can silently ignore the "autoplay"
-  // attribute and reject play(). Belt-and-suspenders: make sure muted is
-  // set as a JS property (not just the HTML attribute, which iOS
-  // sometimes disregards), then keep retrying play() on every load event,
-  // on an interval, and on the first user interaction, until it actually
-  // starts.
-  video.muted = true;
-  video.defaultMuted = true;
-  video.setAttribute('muted', '');
-  video.setAttribute('playsinline', '');
-  video.setAttribute('webkit-playsinline', '');
+  // Try to autoplay normally first (this is what runs 99% of the time).
+  // Only if the browser actually blocks it — which iOS does in Low Power
+  // Mode — do we fall back to a single tap/click/scroll to start it.
+  const playPromise = video.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => {
+      // Autoplay was blocked. Reveal the poster right away instead of
+      // leaving it hidden behind the mask while we wait for a gesture.
+      if (mask) mask.classList.add('is-hidden');
 
-  function tryPlay() {
-    if (!video.paused && video.currentTime > 0) return;
-    const p = video.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
+      const startOnInteraction = () => {
+        video.play().catch(() => {});
+        document.removeEventListener('touchstart', startOnInteraction);
+        document.removeEventListener('click', startOnInteraction);
+        document.removeEventListener('scroll', startOnInteraction);
+      };
+      document.addEventListener('touchstart', startOnInteraction, { once: true, passive: true });
+      document.addEventListener('click', startOnInteraction, { once: true });
+      document.addEventListener('scroll', startOnInteraction, { once: true, passive: true });
+    });
   }
-
-  // Nudge as early and as often as possible.
-  tryPlay();
-  video.addEventListener('loadedmetadata', tryPlay);
-  video.addEventListener('loadeddata', tryPlay);
-  video.addEventListener('canplay', tryPlay);
-  video.addEventListener('canplaythrough', tryPlay);
-  window.addEventListener('load', tryPlay);
-  window.addEventListener('pageshow', tryPlay);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) tryPlay();
-  });
-
-  // Keep polling until playback actually starts, then stop.
-  const retryInterval = setInterval(() => {
-    if (!video.paused && video.currentTime > 0) {
-      clearInterval(retryInterval);
-      return;
-    }
-    tryPlay();
-  }, 300);
-  setTimeout(() => clearInterval(retryInterval), 20000);
-
-  // The very first touch/click/scroll anywhere on the page counts as a
-  // user gesture on iOS — use it to force playback immediately.
-  ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach((evt) => {
-    document.addEventListener(evt, tryPlay, { passive: true });
-  });
 }
 
 /* ===================================================================
