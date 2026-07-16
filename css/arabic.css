@@ -223,24 +223,6 @@ section {
   z-index: 0;
 }
 
-/* Sits on top of the video until playback actually starts. Using a plain
-   img instead of the video's native "poster" attribute avoids iOS's
-   forced play-button overlay, which can't be hidden via CSS. */
-.hero__poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  transition: opacity 0.4s ease;
-}
-
-.hero__poster.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .hero__overlay {
   position: absolute;
   inset: 0;
@@ -548,6 +530,20 @@ section {
   height: 100%;
   border: 0;
   display: block;
+}
+
+.venue__map-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+  font-family: var(--font-body);
+  color: var(--ink);
+  text-decoration: underline;
+  background: var(--bg);
 }
 
 /* ===================================================================

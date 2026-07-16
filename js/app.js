@@ -91,15 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initHeroMask() {
   const video = document.querySelector('.hero__video');
   const mask = document.getElementById('heroMask');
-  const poster = document.querySelector('.hero__poster');
   if (!video || !mask) return;
 
   video.addEventListener('playing', () => {
     // Small buffer so we're past the very first (potentially glitchy) frames
-    setTimeout(() => {
-      mask.classList.add('is-hidden');
-      if (poster) poster.classList.add('is-hidden');
-    }, 250);
+    setTimeout(() => mask.classList.add('is-hidden'), 250);
   }, { once: true });
 }
 
@@ -352,15 +348,34 @@ function initScrollReveal() {
    =================================================================== */
 function initVenue() {
   const query = encodeURIComponent(CONFIG.venue.mapQuery);
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
+  const isArabic = document.documentElement.lang === 'ar';
 
+  const mapWrap = document.querySelector('.venue__map');
   const map = document.getElementById('venueMap');
   if (map) {
     map.src = `https://www.google.com/maps?q=${query}&output=embed`;
+
+    // Content blockers, restrictive networks, or Google's own consent
+    // screen can leave this iframe blank with no error we can detect.
+    // If it hasn't loaded within a few seconds, swap in a direct link
+    // so the box never just sits there empty.
+    let loaded = false;
+    map.addEventListener('load', () => { loaded = true; });
+
+    setTimeout(() => {
+      if (!loaded && mapWrap) {
+        const message = isArabic
+          ? 'تعذّر تحميل الخريطة — اضغط هنا لفتحها في خرائط جوجل'
+          : "Map couldn't load — tap here to open it in Google Maps";
+        mapWrap.innerHTML = `<a href="${directionsUrl}" target="_blank" rel="noopener" class="venue__map-fallback">${message}</a>`;
+      }
+    }, 6000);
   }
 
   const directions = document.getElementById('directionsBtn');
   if (directions) {
-    directions.href = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
+    directions.href = directionsUrl;
   }
 }
 
