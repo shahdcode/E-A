@@ -91,11 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function initHeroMask() {
   const video = document.querySelector('.hero__video');
   const mask = document.getElementById('heroMask');
+  const poster = document.querySelector('.hero__poster');
   if (!video || !mask) return;
 
   video.addEventListener('playing', () => {
     // Small buffer so we're past the very first (potentially glitchy) frames
-    setTimeout(() => mask.classList.add('is-hidden'), 250);
+    setTimeout(() => {
+      mask.classList.add('is-hidden');
+      if (poster) poster.classList.add('is-hidden');
+    }, 250);
   }, { once: true });
 }
 
