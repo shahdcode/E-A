@@ -113,6 +113,53 @@ function initHeroVideoLoop() {
     video.currentTime = LOOP_START;
     video.play().catch(() => {});
   });
+
+  // ===== FORCE THE VIDEO TO PLAY, NO MATTER WHAT =====
+  // iOS (especially in Low Power Mode) can silently ignore the "autoplay"
+  // attribute and reject play(). Belt-and-suspenders: make sure muted is
+  // set as a JS property (not just the HTML attribute, which iOS
+  // sometimes disregards), then keep retrying play() on every load event,
+  // on an interval, and on the first user interaction, until it actually
+  // starts.
+  video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+
+  function tryPlay() {
+    if (!video.paused && video.currentTime > 0) return;
+    const p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  }
+
+  // Nudge as early and as often as possible.
+  tryPlay();
+  video.addEventListener('loadedmetadata', tryPlay);
+  video.addEventListener('loadeddata', tryPlay);
+  video.addEventListener('canplay', tryPlay);
+  video.addEventListener('canplaythrough', tryPlay);
+  window.addEventListener('load', tryPlay);
+  window.addEventListener('pageshow', tryPlay);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) tryPlay();
+  });
+
+  // Keep polling until playback actually starts, then stop.
+  const retryInterval = setInterval(() => {
+    if (!video.paused && video.currentTime > 0) {
+      clearInterval(retryInterval);
+      return;
+    }
+    tryPlay();
+  }, 300);
+  setTimeout(() => clearInterval(retryInterval), 20000);
+
+  // The very first touch/click/scroll anywhere on the page counts as a
+  // user gesture on iOS — use it to force playback immediately.
+  ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach((evt) => {
+    document.addEventListener(evt, tryPlay, { passive: true });
+  });
 }
 
 /* ===================================================================
